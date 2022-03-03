@@ -1,13 +1,12 @@
 import json
+import string
+from collections import Counter
+import stanza
+import textstat
 from nltk import tokenize
 from nltk.corpus import stopwords
-import random
+from nltk.parse import CoreNLPDependencyParser, CoreNLPParser
 from nltk.tree import Tree
-import textstat
-from nltk.parse import CoreNLPParser, CoreNLPDependencyParser
-from collections import Counter
-import string
-import stanza
 
 
 def combine_text(data):

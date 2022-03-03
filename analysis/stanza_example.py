@@ -2,9 +2,9 @@ import stanza
 from stanza.server import CoreNLPClient
 
 
-def main():
-    nlp = stanza.Pipeline('en', processors="tokenize,mwt,pos,lemma,depparse")
-    text = 'My name is Mark and I was born in Australia.'
+def try_stanza_pipeline(text):
+    nlp = stanza.Pipeline(
+        'en', processors="tokenize,mwt,pos,lemma,depparse, constituency")
     doc = nlp(text)
     print(doc)
 
@@ -12,6 +12,8 @@ def main():
         print(sentence.ents)
         print(sentence.dependencies)
 
+
+def try_corenlp_client(text):
     # Construct a CoreNLPClient with some basic annotators and a memory allocation of 4GB
     with CoreNLPClient(
             annotators=['tokenize', 'ssplit', 'pos', 'lemma',
@@ -30,6 +32,12 @@ def main():
         print(constituency_parse)
 
         print(sentence.basicDependencies)
+
+
+def main():
+    text = 'My name is Mark and I was born in Australia.'
+    try_stanza_pipeline(text)
+    try_corenlp_client(text)
 
 
 if __name__ == "__main__":

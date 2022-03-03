@@ -11,8 +11,8 @@
   
 ## Setup & Run textcomplexity
 - pip3 install textcomplexity
-- get conllu ver. of file: python3 utils/get_conllu.py data/example.txt
-- get analysis: txtcomplexity --input-format conllu --all-measures output/example.txt.conllu > "output/example.json"
+- get conllu ver. of file: python3 utils/get_conllu.py data/example.json
+- get analysis: txtcomplexity --input-format conllu --all-measures output/example.json.conllu > "output/example_analysis.json"
 
 ## Run example Stanza code
 - set up your environmental variable 
@@ -23,6 +23,9 @@
 ## Useful Links
 - Stanza
     - https://stanfordnlp.github.io/stanza/installation_usage
+    - https://github.com/stanfordnlp/stanza/blob/main/doc/CoreNLP.proto 
+    - https://stanfordnlp.github.io/stanza/client_usage.html 
+    - https://stanfordnlp.github.io/stanza/tutorials.html 
 - CoreNLP
     - https://stanfordnlp.github.io/CoreNLP/corenlp-server.html 
 - textcomplexity

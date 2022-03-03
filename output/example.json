@@ -1,5 +1,5 @@
 {
-    "output/example.txt.conllu": {
+    "output/example.json.conllu": {
         "type-token ratio (disjoint windows)": {
             "value": 0.095,
             "stdev": 0

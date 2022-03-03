@@ -25,14 +25,16 @@ def main():
     nlp = stanza.Pipeline(args.language, processors="tokenize,mwt,pos,lemma,depparse")
     for fh in args.TEXT:
         filename = os.path.basename(fh.name)
-        text = fh.read()
-        doc = nlp(text)
-        dicts = doc.to_dict()
-        conll = CoNLL.convert_dict(dicts)
-        with open(os.path.join(args.output_dir, filename + ".conllu"), mode="w", encoding="utf-8") as out:
-            for sentence in conll:
-                out.write("\n".join(("\t".join(token) for token in sentence)))
-                out.write("\n\n")
+        with open(fh.name) as json_file:
+            data = json.load(json_file)
+            text = data["text"]
+            doc = nlp(text)
+            dicts = doc.to_dict()
+            conll = CoNLL.convert_dict(dicts)
+            with open(os.path.join(args.output_dir, filename + ".conllu"), mode="w", encoding="utf-8") as out:
+                for sentence in conll:
+                    out.write("\n".join(("\t".join(token) for token in sentence)))
+                    out.write("\n\n")
 
 
 if __name__ == "__main__":

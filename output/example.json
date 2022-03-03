@@ -1,0 +1,133 @@
+{
+    "output/example.txt.conllu": {
+        "type-token ratio (disjoint windows)": {
+            "value": 0.095,
+            "stdev": 0
+        },
+        "Guiraud's R (disjoint windows)": {
+            "value": 3.0041637771599605,
+            "stdev": 0
+        },
+        "Herdan's C (disjoint windows)": {
+            "value": 0.6592412017629493,
+            "stdev": 0
+        },
+        "Dugast's k (disjoint windows)": {
+            "value": 2.3562928104086382,
+            "stdev": 0
+        },
+        "Maas' a² (disjoint windows)": {
+            "value": 0.04932988857811156,
+            "stdev": 0
+        },
+        "Dugast's U (disjoint windows)": {
+            "value": 20.27168576342002,
+            "stdev": 0
+        },
+        "Tuldava's LN (disjoint windows)": {
+            "value": -0.14474878687700626,
+            "stdev": 0
+        },
+        "Brunet's W (disjoint windows)": {
+            "value": 3679859.3770933407,
+            "stdev": 0
+        },
+        "CTTR (disjoint windows)": {
+            "value": 2.1242645786248002,
+            "stdev": 0
+        },
+        "Summer's S (disjoint windows)": {
+            "value": 0.7844064186481752,
+            "stdev": 0
+        },
+        "Sichel's S (disjoint windows)": {
+            "value": 0.0,
+            "stdev": 0
+        },
+        "Michéa's M (disjoint windows)": {
+            "value": NaN,
+            "stdev": 0
+        },
+        "Honoré's H (disjoint windows)": {
+            "value": 690.7755278982137,
+            "stdev": 0
+        },
+        "Entropy (disjoint windows)": {
+            "value": 6.343984188127941,
+            "stdev": 0
+        },
+        "Evenness (disjoint windows)": {
+            "value": 0.9656200328182876,
+            "stdev": 0
+        },
+        "Yule's K (disjoint windows)": {
+            "value": 135.28000000000003,
+            "stdev": 0
+        },
+        "Simpson's D (disjoint windows)": {
+            "value": 0.013541541541541541,
+            "stdev": 0
+        },
+        "Herdan's Vm (disjoint windows)": {
+            "value": 0.06325886665540505,
+            "stdev": 0
+        },
+        "HD-D (disjoint windows)": {
+            "value": 0.05673454310551714,
+            "stdev": 0
+        },
+        "average token length (disjoint windows)": {
+            "value": 4.51,
+            "stdev": 0
+        },
+        "Orlov's Z (disjoint windows)": {
+            "value": 36.000917953052586,
+            "stdev": 0
+        },
+        "type-token ratio (moving windows)": {
+            "value": 0.095
+        },
+        "MTLD": {
+            "value": 95.05520992498958
+        },
+        "average sentence length (words)": {
+            "value": 36.5,
+            "stdev": 13.990737676789625
+        },
+        "average sentence length (characters)": {
+            "value": 200.75,
+            "stdev": 81.69483641146665
+        },
+        "punctuation per sentence": {
+            "value": 5.75,
+            "stdev": 4.850544070285083
+        },
+        "punctuation per token": {
+            "value": 0.15753424657534246
+        },
+        "average dependency distance": {
+            "value": 3.589448051948052,
+            "stdev": 0.4640225652439517
+        },
+        "closeness centrality": {
+            "value": 0.24940972939748948,
+            "stdev": 0.047604125026665035
+        },
+        "outdegree centralization": {
+            "value": 0.14686124053615937,
+            "stdev": 0.040378305736743274
+        },
+        "closeness centralization": {
+            "value": 0.2080486961229003,
+            "stdev": 0.037483550190816665
+        },
+        "longest shortest path": {
+            "value": 8.25,
+            "stdev": 3.40614912354874
+        },
+        "dependents per word": {
+            "value": 0.9686469088947183,
+            "stdev": 0.010932036218420371
+        }
+    }
+}

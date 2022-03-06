@@ -27,6 +27,19 @@
     - on mac: lsof -t -i tcp:9001 | xargs kill
 - run code, e.g. python3 analysis/analyze_data.py
 
+##setup Empath
+-Install empath 
+  - pip install empath
+
+-To run sample code to perform analysis use command given below. It takes file name as program argument.
+    AnalysisUsingEmpathy.py ../data/all_text.json
+
+##setup spacy
+-Install spacy 
+  - pip install -U spacy
+  - python -m spacy download en_core_web_sm
+--To run sample code to perform analysis use command given below. It takes file name as program argument.
+    AnalysisUsingSpacy.py ../data/all_text.json
 
 ## Useful Links
 - Stanza
@@ -39,3 +52,7 @@
     - https://stanfordnlp.github.io/CoreNLP/corenlp-server.html 
 - textcomplexity
     - https://github.com/tsproisl/textcomplexity 
+- Empath
+  - https://github.com/Ejhfast/empath-client
+- spacy 
+  - https://web.archive.org/web/20190206204307/https://www.clips.uantwerpen.be/pages/mbsp-tags [tags list]

@@ -1,0 +1,50 @@
+id,url,title,score,num_comments,created_utc,selftext
+ko0z3a,https://www.reddit.com/r/techsupport/comments/ko0z3a/what_do_i_call_this_block_of_pixels_thats_lighter/,What do I call this block of pixels that's lighter than the rest of the monitor?,13,5,1609459044.0,"[https://i.imgur.com/vDYeASh.png](https://i.imgur.com/vDYeASh.png)
+
+OS: Win10 v1909 (if that matters)
+
+I'm trying to google a solution but can't find anything remotely related to the problem.  What's the term of this monitor problem called?  The top left corner has a square block of pixels on the top left corner and it seems to always be a lighter/blurry representation of what's supposed to be there.  
+
+
+Already tried:
+
+\- restarting computer
+
+\- updating GPU
+
+\- replugging both cables
+
+\- tried cables with different monitors
+
+\- tried monitor with different (working) cables
+
+\- tried different ports on the GPU
+
+\- tapping sides of monitor
+
+&#x200B;
+
+Even if it's broken beyond repair, what would you call this?"
+ko0yzj,https://www.reddit.com/r/techsupport/comments/ko0yzj/discord_picks_up_outputsound/,Discord picks up output-sound,1,2,1609459033.0,[deleted]
+ko0vwu,https://www.reddit.com/r/techsupport/comments/ko0vwu/windows/,Windows,1,1,1609458705.0,[removed]
+ko0v6e,https://www.reddit.com/r/techsupport/comments/ko0v6e/i_moved_some_files_from_my_ssd_to_my_hard_drive/,"I moved some files from my ssd to my hard drive, and now everything is really messed up.",1,2,1609458627.0,"I have seriously messed up this time. I got my new SSD and I cloned my hard drive with windows onto it, and then wiped my hard drive. At that point, everything was fine, but then I decided to start moving things from my SSD back onto the hard drive. And I really fucked things up. Some apps are saying they can't find files, all my steam games don't have thumbnails, I need to reinstall a lot of my steam games and a whole bunch of bullshit. The specific files I copied over to my hard drive are ""Program Files"", ""Program Files x86"", and ""Steam"". Steam was like updating and just decided to dump all the update files on my desktop too, and whenever I try to install a steam game it just says I can create a new directory in one of my other drives, or I can Install on C:\\Users\\(My name)\\Desktop. I am a nervous wreck right now and this is a pretty shitty way of spending new year's eve. If any kind soul has any amount of advice, it would be greatly appreciated. If you want to even talk further DM me and I can give you my discord. Again, thank you."
+ko0ubl,https://www.reddit.com/r/techsupport/comments/ko0ubl/any_good_and_free_hwid_spoofers/,Any good and free HWID spoofers?,1,1,1609458535.0,[removed]
+ko0to1,https://www.reddit.com/r/techsupport/comments/ko0to1/please_help_i_really_messed_up/,Please help. I really messed up.,1,1,1609458470.0,[removed]
+ko0r2m,https://www.reddit.com/r/techsupport/comments/ko0r2m/firefox_zooms_out_when_i_press_the_ctrl_key_even/,Firefox zooms out when I press the CTRL key even when I'm not scrolling with the mouse wheel.,1,5,1609458210.0,"I've replaced the keyboard and mouse and rebooted the computer. And, I get the same behavior when the mouse is disconnected. I can even witness the problem in another application where I disconnect the keyboard but keep the mouse.
+
+The computer behaves as though a mouse wheel was constantly scrolling down. So, If I'm in Firefox, the zoom plummets to 30%, the minimum.
+
+There are applications where I can use the mouse's wheel to scroll up and down. There are other applications where it's as though there's constantly a mouse wheel scrolling down. In those situations, I can flick a few times on the mouse wheel to go up be then it's immediately overtaken by constant wheel down.
+
+In firefox, while not touching the CTRL key, the mouse wheel scroll up and down is normal.
+
+In one application, it behaves as though I was scrolling to the right.
+
+This is a Win10 PC with up to date OS. The problem started today.
+
+Coincidentally, my USB wired mouse died because of a frayed wire. It's as if the dying mouse infected the computer. My best guess is that there's a corruption in the registry.
+
+Edit: Solved.
+
+There was a connected to the computer a USB dongle for a wireless accessory. I don't remember what. Maybe a mouse I used to use. When I removed the dongle, the problem went away. Maybe there's a  mouse in a box somewhere with a wheel wedged in some position. Or a keyboard with a key pressed."
+ko0qvg,https://www.reddit.com/r/techsupport/comments/ko0qvg/secondary_hdd_disappears/,Secondary HDD disappears,1,0,1609458191.0,[deleted]

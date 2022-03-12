@@ -1,0 +1,136 @@
+id,url,title,score,num_comments,created_utc,selftext
+ko0z3a,https://www.reddit.com/r/techsupport/comments/ko0z3a/what_do_i_call_this_block_of_pixels_thats_lighter/,What do I call this block of pixels that's lighter than the rest of the monitor?,13,5,1609459044.0,"[https://i.imgur.com/vDYeASh.png](https://i.imgur.com/vDYeASh.png)
+
+OS: Win10 v1909 (if that matters)
+
+I'm trying to google a solution but can't find anything remotely related to the problem.  What's the term of this monitor problem called?  The top left corner has a square block of pixels on the top left corner and it seems to always be a lighter/blurry representation of what's supposed to be there.  
+
+
+Already tried:
+
+\- restarting computer
+
+\- updating GPU
+
+\- replugging both cables
+
+\- tried cables with different monitors
+
+\- tried monitor with different (working) cables
+
+\- tried different ports on the GPU
+
+\- tapping sides of monitor
+
+&#x200B;
+
+Even if it's broken beyond repair, what would you call this?"
+ko0yzj,https://www.reddit.com/r/techsupport/comments/ko0yzj/discord_picks_up_outputsound/,Discord picks up output-sound,1,2,1609459033.0,[deleted]
+ko0vwu,https://www.reddit.com/r/techsupport/comments/ko0vwu/windows/,Windows,1,1,1609458705.0,[removed]
+ko0v6e,https://www.reddit.com/r/techsupport/comments/ko0v6e/i_moved_some_files_from_my_ssd_to_my_hard_drive/,"I moved some files from my ssd to my hard drive, and now everything is really messed up.",1,2,1609458627.0,"I have seriously messed up this time. I got my new SSD and I cloned my hard drive with windows onto it, and then wiped my hard drive. At that point, everything was fine, but then I decided to start moving things from my SSD back onto the hard drive. And I really fucked things up. Some apps are saying they can't find files, all my steam games don't have thumbnails, I need to reinstall a lot of my steam games and a whole bunch of bullshit. The specific files I copied over to my hard drive are ""Program Files"", ""Program Files x86"", and ""Steam"". Steam was like updating and just decided to dump all the update files on my desktop too, and whenever I try to install a steam game it just says I can create a new directory in one of my other drives, or I can Install on C:\\Users\\(My name)\\Desktop. I am a nervous wreck right now and this is a pretty shitty way of spending new year's eve. If any kind soul has any amount of advice, it would be greatly appreciated. If you want to even talk further DM me and I can give you my discord. Again, thank you."
+ko0ubl,https://www.reddit.com/r/techsupport/comments/ko0ubl/any_good_and_free_hwid_spoofers/,Any good and free HWID spoofers?,1,1,1609458535.0,[removed]
+ko0to1,https://www.reddit.com/r/techsupport/comments/ko0to1/please_help_i_really_messed_up/,Please help. I really messed up.,1,1,1609458470.0,[removed]
+ko0r2m,https://www.reddit.com/r/techsupport/comments/ko0r2m/firefox_zooms_out_when_i_press_the_ctrl_key_even/,Firefox zooms out when I press the CTRL key even when I'm not scrolling with the mouse wheel.,1,5,1609458210.0,"I've replaced the keyboard and mouse and rebooted the computer. And, I get the same behavior when the mouse is disconnected. I can even witness the problem in another application where I disconnect the keyboard but keep the mouse.
+
+The computer behaves as though a mouse wheel was constantly scrolling down. So, If I'm in Firefox, the zoom plummets to 30%, the minimum.
+
+There are applications where I can use the mouse's wheel to scroll up and down. There are other applications where it's as though there's constantly a mouse wheel scrolling down. In those situations, I can flick a few times on the mouse wheel to go up be then it's immediately overtaken by constant wheel down.
+
+In firefox, while not touching the CTRL key, the mouse wheel scroll up and down is normal.
+
+In one application, it behaves as though I was scrolling to the right.
+
+This is a Win10 PC with up to date OS. The problem started today.
+
+Coincidentally, my USB wired mouse died because of a frayed wire. It's as if the dying mouse infected the computer. My best guess is that there's a corruption in the registry.
+
+Edit: Solved.
+
+There was a connected to the computer a USB dongle for a wireless accessory. I don't remember what. Maybe a mouse I used to use. When I removed the dongle, the problem went away. Maybe there's a  mouse in a box somewhere with a wheel wedged in some position. Or a keyboard with a key pressed."
+ko0qvg,https://www.reddit.com/r/techsupport/comments/ko0qvg/secondary_hdd_disappears/,Secondary HDD disappears,1,0,1609458191.0,[deleted]
+ko0poh,https://www.reddit.com/r/techsupport/comments/ko0poh/i_keep_getting_a_black_screen_whenever_i_try_to/,"I keep getting a black screen whenever i try to install the driver for a used gtx 1070 i just bought on ebay, is my gpu dead?",1,0,1609458065.0,"I used DDU to uninstall my former rx 580 display driver then I swapped it out with the gtx 1070. It booted up just fine and I was able to download the drivers needed and start the installation process, however during installation my screen just goes black. What should I do, this is already my 2nd attempt at trying to install the drivers."
+ko0oaz,https://www.reddit.com/r/techsupport/comments/ko0oaz/why_do_i_occasionally_get_a_youtube_stream_popup/,"Why do I occasionally get a Youtube stream ""pop-up"" window on my screen?",1,1,1609457921.0,"Image: https://imgur.com/a/bOdNemD
+
+I'd really like to disable it, but I have no idea what causes it."
+ko0o3y,https://www.reddit.com/r/techsupport/comments/ko0o3y/tplink_router_wont_stay_connected/,TP-Link router won’t stay connected,1,5,1609457902.0,"So I recently went through my yearly argument with my cable company over my internet plan. After 5 calls I got it settled but had to get a Docsis 3.1 router. So I ordered a Motorola SB8600. Then I bought a TP-Link ax3000 router to go with it. Well the modem says it’s got connectivity and the WiFi signal stays up. But the router keeps saying no internet. I’ve tried the trouble shooting through TP-Link. My thought is to order a new modem, then if that doesn’t work return and get a new router, or am I being stupid and this is a cable company issue? My wife has now been dealing with our kids at home with no streaming or online anything because at best she gets 25 minutes of internet before it’s gone again... any help appreciated? Especially if you can work magic! Lol"
+ko0nz3,https://www.reddit.com/r/techsupport/comments/ko0nz3/a_device_that_combines_ps4_audio_output_and_pc/,"A device that combines PS4 audio output and PC output into one headset with mic, is this possible?",2,3,1609457889.0,"Basically the title. If not, is there any programs or something similar? If possible please leave a link."
+ko0k1e,https://www.reddit.com/r/techsupport/comments/ko0k1e/asus_tuf_a17_fps_drops/,Asus tuf A17 Fps drops,1,2,1609457484.0,"Hello all,
+
+To start off, a happy new year to everyone! 
+
+So i bought a new laptop and it  got deliverd today.
+
+
+Upon opening it i updated the drivers , optimised the games i play to high performance and set my energyplan to high performance.
+
+Now when i started my game it ran : 120fps on Ultra - 3 minutes later and the Fps drops to 30
+
+I restarted and tried again, to the same result.
+
+Any ideas what might cause this? 
+
+Ive googled and seen a lot of people have this issue on asus laptops, and its really disheartening for a new fresh out of the box laptop. ( due to space and other reasons I can't have a pc)
+
+
+These are the specs:
+
+CPU: AMD Ryzen 7 4800H
+GPU: Nvidia GeForce GTX 1660 Ti
+RAM: 16GB
+Storage: 1TB SSD
+Display: 17.3-inch, 1920 x 1080, 120Hz
+Battery: 7:41
+
+Any help would be greatly appreciated."
+ko0ete,https://www.reddit.com/r/techsupport/comments/ko0ete/my_pc_randomly_stops_outputing_to_monitor_my/,"My pc randomly stops outputing to monitor, my motherboard LED flashes yellow and my gpu flashes White.",1,3,1609456958.0,The above have happend multiple times on varius operating systems.
+ko0e4g,https://www.reddit.com/r/techsupport/comments/ko0e4g/old_gpu_mounting_bracket_clip_has_broken_off/,Old GPU mounting bracket clip has broken off.,1,0,1609456890.0,[deleted]
+ko0d47,https://www.reddit.com/r/techsupport/comments/ko0d47/how_do_i_reflash_corrupted_bios_without_working/,"How do I re-flash corrupted BIOS, without working USB ports, dvd drive, or installed windows?",0,12,1609456783.0," I upgraded the  BIOS my GA-x79-UD5 motherboard from  F12 to F14e  
+ It worked fine or a few weeks, until the following happened:  
+ I booted the computer and got the BIOS F12 splash screen, instead of the BIOS F14e  splash screen.  Then it rebooted again gave me an error message like  ""Main bios corrupted, restoring from backup.""  It rebooted again and and had no splash screen from then on. 
+
+Whenever I boot the computer, it's give it's extremely slow and after a while crashes, whether I use MacOS or Ubuntu.
+
+I wanted to re-flash the BOISt back to F12, but encountered the following problems:
+
+ \-  I only get the first BIOS screen, (regardless of whether I use the primary or secondary BIOS).  
+ \- I can't access any setting not on this screen  
+ \- All USB ports don't work until the OS loads, so I can't flash the BIOS from USB.   
+ \- I don't have a CD/DVD Drive that is working.  
+ \- I don't have MS Windows, so I can't use the \\@BIOS utility  
+ \- MacOS and Ubuntu boot from the SATA drive, but I don't know of a BIOS flashing utility for them.  
+ \- When I hit the <End> key during the POST or the <F8> key in BIOS setup menu, nothing happens.  
+ 
+
+Is there anything I can do to re-flash my BIOS?"
+ko0cr3,https://www.reddit.com/r/techsupport/comments/ko0cr3/home_wifi_keeps_disconnecting_after_new_device/,Home wi-fi keeps disconnecting after new device [Chromebook] was added. Is it fixable?,1,6,1609456748.0,"Previously on the network was only a Windows 10 laptop and a few Android phones, with no problems noted – disconnects were quite rare. Now with a Chromebook on the network as well and it's been disconnecting maybe 3-4 times a day, followed by a few minutes of just waiting for the network to reappear and connect to the internet.
+
+It's not the worst inconvenience, but it sucks if you're streaming video and have to wait a few minutes. Not much different than a commercial I guess, but it's still something that shouldn't be happening I don't think. I've tried completely restarting the Xfinity modem, but that didn't seem to make much of a difference. It still happens, and you just have to wait for the network to reappear.."
+ko0cfy,https://www.reddit.com/r/techsupport/comments/ko0cfy/booted_mac_to_windows_10_but_now_wifi_doesnt_work/,Booted Mac to Windows 10 but now WiFi doesn’t work,2,1,1609456714.0,[deleted]
+ko0bp4,https://www.reddit.com/r/techsupport/comments/ko0bp4/cant_see_whats_taking_up_all_my_ssd_storage/,Can't see what's taking up all my SSD storage,1,3,1609456637.0,"Hi, a few months back I bought my first gaming pc with 237 gb ssd and 931 gb hdd, the ssd has all of windows OS system drivers etc, but it's almost full. The issue is that I can't see what's taking up the storage, I made it so I could view hidden files via view>options>view>show hidden files. But after going through the folders on the drive, it says that there is only 90.3 gb used, even though the icon says 191 gb used, does anyone know why this is as I'm trying to save some more storage on the computer, thanks."
+ko0b4w,https://www.reddit.com/r/techsupport/comments/ko0b4w/had_a_problem_i_cant_figure_out/,Had a problem I can't figure out,1,1,1609456584.0,[removed]
+ko0b0l,https://www.reddit.com/r/techsupport/comments/ko0b0l/i_have_been_having_issues_with_my_new_razer/,I have been having issues with my new Razer Blackwidow Elite,1,0,1609456573.0,"I got a Razer Blackwidow Elite for Christmas, and it worked fine until last night. I tried to change the lighting effect on my keyboard and mouse, only for synapse to crash. It then stopped detecting my keyboard, and when i unplugged it and plugged it back in, it came up with a loading wheel on the keyboard when i went to the dashboard of synapse. After unplugging and replugging a few times, it came up and i could change the lights again.
+
+I clicked my favourite setup, and it crashed again. I unplugged the keyboard, and tried changing the lights on just the mouse, which worked perfectly fine with no crashes. I don't know if it would be a problem with the keyboard, synapse, or my PC. note that i have had some issues with my SSD, and it may be the cause of the problems.
+
+I have tried:
+
+unplugging and plugging back in
+
+refreshing synapse
+
+killing synapse in task manager and relaunching
+
+repairing synapse
+
+removing cortex and synapse from my PC, then reinstalling
+
+checking for updates on synapse
+
+Restarting my PC
+
+None of these solutions worked. I would appreciate some help with this."
+ko0arp,https://www.reddit.com/r/techsupport/comments/ko0arp/why_is_my_laptops_storage_space_so_full_and_can_i/,Why is my laptop's storage space so full? And can I remove some?,1,8,1609456549.0,"Hey, I have Windows 10 on a Jumper X3 laptop, so it's pretty simple and not made to have loads of space anyway. Except today I wanted to install a new game which is about 24 GB? It said I didn't have enough space, which I kind of expected, so I went into storage and it says I've used fucking 34.6 GB and only have 22.9 left. I really don't understand how, as the apps and features only comes to 11.3 GB and temporary files comes to 1.16GB, also I think when I cleaned some stuff off the amount of room I had left actually decreased.
+
+Can anyone help?
+
+Thanks"

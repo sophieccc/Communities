@@ -14,7 +14,7 @@ def arguments():
     stanza_resources = json.load(open(os.path.join(stanza.resources.common.DEFAULT_MODEL_DIR, "resources.json")))
     parser = argparse.ArgumentParser(description="Parse input texts to CONLL-U format using stanza.")
     parser.add_argument("-l", "--language", choices=sorted(stanza_resources.keys()), default="en", help="Input language.")
-    parser.add_argument("-o", "--output-dir", type=os.path.abspath, default="output", help="Output directory. Default: Current directory.")
+    parser.add_argument("-o", "--output-dir", type=os.path.abspath, default="data", help="Output directory. Default: Current directory.")
     parser.add_argument("TEXT", type=argparse.FileType("r", encoding="utf-8"), nargs="+", help="Input text files. Paths to files or \"-\" for STDIN.")
     return parser.parse_args()
 

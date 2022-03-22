@@ -23,15 +23,16 @@ def get_reddit(subreddit, listing, limit, after=''):
 
 r_all = get_reddit(subreddit, listing, limit)
 keys = ["selftext", "author", "title", "id", "created_utc", "num_comments"]
-with open('techsupport.json', 'a') as f:
+with open('data/techsupport.json', 'a') as f:
     json_objs = []
     for post in r_all:
         json_obj = {
             "id": post["data"]["id"],
             "created": post["data"]["created_utc"],
             "num_comments": post["data"]["num_comments"],
+            "score": post["data"]["score"],
             "text": post["data"]["selftext"],
-            "authot": post["data"]["author"],
+            "author": post["data"]["author"],
             "title": post["data"]["title"]
         }
         json_objs.append(json_obj)

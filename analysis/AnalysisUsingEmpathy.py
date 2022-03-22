@@ -5,7 +5,11 @@ import sys
 import pandas as pd
 
 def main():
-    fn = sys.argv[1]
+    fn = ""
+    if len(sys.argv) > 1:
+        fn = sys.argv[1]
+    else:
+        fn = "data/example2.json"
     if os.path.exists(fn):
         with open(fn, 'r') as json_file:
             datas = json.load(json_file)
@@ -14,7 +18,7 @@ def main():
                 text = data["text"]
                 lexicon = Empath()
                 result.append(lexicon.analyze(text, categories=["sympathy", "emotional", "communication", "pain", "neglect", "negative_emotion"], normalize=True))
-            pd.DataFrame(result).to_csv('analysisResult/result1.csv',index=False)
+            pd.DataFrame(result).to_csv('analysisResult/empath.csv',index=False)
 
 if __name__ == "__main__":
     main()

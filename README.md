@@ -20,6 +20,7 @@
 - Install any python dependencies
   - pip3 install nltk
   - pip3 install textstat
+  - pip3 install vaderSentiment
 - create separate terminal and run CoreNLP server
   - cd corenlp
   - java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9001 -timeout 15000

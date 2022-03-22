@@ -1,14 +1,11 @@
-__RUN_NAME__ = 'Big Five Analyze' # 0: 'Big Five Analyze'
-# __DATA_OF_BIG_FIVE_ = 'test.json' # 0: 'test.json', 1: '../data/all_text.json'
-__DATA_OF_BIG_FIVE_ = '../data/all_text.json' # 0: 'test.json', 1: '../data/all_text.json'
+__DATA_OF_BIG_FIVE_ = 'data/all_text.json' # 0: 'test.json', 1: '../data/all_text.json'
 __DIMENTION_OF_BIG_FIVE__ = ['Extro', 'Agree', 'Consc', 'Neuro', 'Open']
+__OUTPUT_FILE__ = 'analysisResult/big_five.json'
 
 import json
-
-from BasicAnalyzeMx import BasicAnalyzeMx
 import pandas as pd
 
-class BigFiveAnalyze(BasicAnalyzeMx):
+class BigFiveAnalyze():
     def __init__(self, data_source):
         self.data_source = None
         self.data_type = None
@@ -21,17 +18,16 @@ class BigFiveAnalyze(BasicAnalyzeMx):
         self.data_source = data_source
         self.data_type = data_source.split('.')[-1]
         self._process_data()
-        pass
 
     def _process_data(self):
         if self.data_type == 'json':
-            self.data = pd.read_json(self.data_source, typ='series')
-            # a = self.data['text'].str.split(' ', expand = False)
-            self.all_text = self.data.to_frame('text').loc['text'][0].split()
-            self.data_frame = pd.DataFrame(data=[[i, 0, 0, 0, 0, 0,1] for i in self.all_text],
-                                           index=self.all_text,
-                                           columns=['text', *__DIMENTION_OF_BIG_FIVE__, 'total'])
-            self.data_frame = self._count(self.data_frame)
+            with open(self.data_source) as json_file:
+                self.data = json.load(json_file)
+                self.all_text = self.data["text"].split()
+                self.data_frame = pd.DataFrame(data=[[i, 0, 0, 0, 0, 0,1] for i in self.all_text],
+                                            index=self.all_text,
+                                            columns=['text', *__DIMENTION_OF_BIG_FIVE__, 'total'])
+                self.data_frame = self._count(self.data_frame)
 
     def _stat(self):
         self._count(self.data_frame)
@@ -47,15 +43,15 @@ class BigFiveAnalyze(BasicAnalyzeMx):
     def stat(self):
         self._stat()
 
-    def print_result_for_test(self):
-        print(self.data_frame)
+    def save_result_for_test(self):
+        self.data_frame.to_json(__OUTPUT_FILE__)
 
 
 def run_big_five_analyze():
     data_file = __DATA_OF_BIG_FIVE_
     analyzer = BigFiveAnalyze(data_file)
     analyzer.stat()
-    analyzer.print_result_for_test()
+    analyzer.save_result_for_test()
 
-if __RUN_NAME__ == 'Big Five Analyze':
+if __name__ == "__main__":
     run_big_five_analyze()

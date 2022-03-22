@@ -37,19 +37,21 @@ def get_lexicon_stats(data):
         for token in tokens:
             word_count += 1
             uniques.add(token)
-    print("Number of token: {}".format(len(uniques)))
-    print("Number of posts: {}".format(num_posts))
-    print("Syllables per post: {}".format(syllable_sum / num_posts))
-    print("Words per post: {}".format(word_sum / num_posts))
-    print("Total sentences: {}".format(sentence_sum))
-    print("Sentences per post: {}".format(sentence_sum / num_posts))
-    print("Syllables per word: {}".format(syllable_sum / word_sum))
-    print("Words per sentence: {}".format(word_sum / sentence_sum))
-    print("Characters per word: {}".format(character_sum / word_sum))
-    print("Letters per word: {}".format(letter_count / num_posts))
-    print("Polysyllabs per post: {}".format(polysyllab_count / num_posts))
-    print("Number of unique words: {}".format(len(uniques)))
-    print("Overall Type-token ratio: {}".format(len(uniques) / word_count))
+    results = {}
+    results["Number of token"] = len(uniques)
+    results["Number of posts"] = num_posts
+    results["Syllables per post"] = syllable_sum / num_posts
+    results["Words per post"] = word_sum / num_posts
+    results["Total sentences"] = sentence_sum
+    results["Sentences per post"] = sentence_sum / num_posts
+    results["Syllables per word"] = syllable_sum / word_sum
+    results["Words per sentence"] = word_sum / sentence_sum
+    results["Characters per word"] = character_sum / word_sum
+    results["Letters per word"] = letter_count / num_posts
+    results["Polysyllabs per post"] = polysyllab_count / num_posts
+    results["Number of unique words"] = len(uniques)
+    results["Overall Type-token ratio"] = len(uniques) / word_count
+    return results
 
 
 def count_nodes(tree, count, num_s):
@@ -67,8 +69,6 @@ def nltk_stuff(data):
     num_nodes = 0
     num_s = 0
     height = 0
-    get_lexicon_stats(data)
-    print("\n")
     for item in data:
         value = item["text"]
 
@@ -81,11 +81,13 @@ def nltk_stuff(data):
         num_nodes += curr_num_nodes
         num_s += curr_num_s
 
-    print("Num clauses: {}".format(num_s))
-    print("Num nodes: {}".format(num_nodes))
-    print("Total height: {}".format(height))
-    print("Avg nodes per post: {}".format(num_nodes / len(data)))
-    print("Avg height of post: {}".format(height / len(data)))
+    results = {}
+    results["Num clauses"] = num_s
+    results["Num nodes"] = num_nodes
+    results["Total height"] = height
+    results["Avg nodes per post"] = num_nodes / len(data)
+    results["Avg height of post"] = height / len(data)
+    return results
 
     # dep_parser = CoreNLPDependencyParser(url='http://localhost:9001')
     # dep_parsed = dep_parser.parse('The quick brown fox jumps over the lazy dog.'.split())
@@ -103,7 +105,8 @@ def verb_stats(data):
             for word in sentence.words:
                 if word.upos.startswith("V"):
                     verb_count += 1
-    print("Number of berns: {}".format(verb_count))
+    return {"verb count":verb_count}
+
 
 
 def top_words():
@@ -119,19 +122,24 @@ def top_words():
         top_frequency = 0
         for word in counter.most_common(10):
             top_frequency += word[1]
-        print("Frequency of all words: {}".format(total_frequency))
-        print("Frequency of top 10 words: {}".format(top_frequency))
-        print("% in text of top 10 words: {}".format(
-            (top_frequency / total_frequency) * 100))
+        results = {}
+        results["Frequency of all words"] = total_frequency
+        results["Frequency of top 10 words"] = top_frequency
+        results["percent of text is top 10 words"] = (top_frequency / total_frequency) * 100
+        return results
 
 
 def main():
     with open('data/example2.json') as json_file:
         data = json.load(json_file)
+        results = {}
         combine_text(data)
-        verb_stats(data)
-        nltk_stuff(data)
-        top_words()
+        results["lexicon stats"] = get_lexicon_stats(data)
+        results["verb stats"] = verb_stats(data)
+        results["ntlk stats"] = nltk_stuff(data)
+        results["top words"] = top_words()
+        with open("analysisResult/analyze_data.json", "w") as file:
+            file.write(json.dumps(results))
 
 
 if __name__ == "__main__":

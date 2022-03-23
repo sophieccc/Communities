@@ -1,27 +1,16 @@
-__RUN_NAME__ = 'Big Five Analyze' # 0: 'Big Five Analyze'
 # __DATA_OF_BIG_FIVE_ = 'test.json' # 0: 'test.json', 1: '../data/all_text.json'
 __DATA_OF_BIG_FIVE_ = '../data/all_text.json' # 0: 'test.json', 1: '../data/all_text.json'
 __DIMENTION_OF_BIG_FIVE__ = ['Extro', 'Agree', 'Consc', 'Neuro', 'Open']
 
 import json
 
-from BasicAnalyzeMx import BasicAnalyzeMx
+from basicAnalyzeMx import BasicAnalyzeMx
 import pandas as pd
 
 class BigFiveAnalyze(BasicAnalyzeMx):
     def __init__(self, data_source):
-        self.data_source = None
-        self.data_type = None
-        self.data = None
-        self.all_text = None
-        self.data_frame = None
-        self._set_data_source(data_source)
-
-    def _set_data_source(self, data_source):
-        self.data_source = data_source
-        self.data_type = data_source.split('.')[-1]
+        super().__init__(data_source)
         self._process_data()
-        pass
 
     def _process_data(self):
         if self.data_type == 'json':
@@ -57,5 +46,5 @@ def run_big_five_analyze():
     analyzer.stat()
     analyzer.print_result_for_test()
 
-if __RUN_NAME__ == 'Big Five Analyze':
+if __name__ == '__main__':
     run_big_five_analyze()

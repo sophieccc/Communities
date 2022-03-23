@@ -1,22 +1,16 @@
-__DATA_OF_BIG_FIVE_ = 'data/all_text.json' # 0: 'test.json', 1: '../data/all_text.json'
+# __DATA_OF_BIG_FIVE_ = 'test.json' # 0: 'test.json', 1: '../data/all_text.json'
+__DATA_OF_BIG_FIVE_ = '../data/all_text.json' # 0: 'test.json', 1: '../data/all_text.json'
 __DIMENTION_OF_BIG_FIVE__ = ['Extro', 'Agree', 'Consc', 'Neuro', 'Open']
 __OUTPUT_FILE__ = 'analysisResult/big_five.json'
 
 import json
+
+from BasicAnalyzeMx import BasicAnalyzeMx
 import pandas as pd
 
 class BigFiveAnalyze():
     def __init__(self, data_source):
-        self.data_source = None
-        self.data_type = None
-        self.data = None
-        self.all_text = None
-        self.data_frame = None
-        self._set_data_source(data_source)
-
-    def _set_data_source(self, data_source):
-        self.data_source = data_source
-        self.data_type = data_source.split('.')[-1]
+        super().__init__(data_source)
         self._process_data()
 
     def _process_data(self):

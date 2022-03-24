@@ -1,6 +1,11 @@
 import json
 import re
+from venv import create
 from autocorrect import Speller
+from emot.emo_unicode import EMOTICONS_EMO
+
+emot_words = {}
+valid_token = re.compile(r"^[\da-zA-Z0-1\s_\-\(\)\/!\.,\?]+$")
 
 
 # This function removes any emojis and replaces usernames
@@ -46,15 +51,31 @@ def remove_hashtags(data):
             normal_spaces += "."
         item["text"] = normal_spaces
 
+# replaces a wide range of emoticons with word-versions describing them.
+def replace_emoticons(data):
+    for item in data:
+        value = item["text"]
+        for emot in emot_words:
+            value = re.sub(re.escape(emot), emot_words[emot], value)
+        item["text"] = value
+
+
+def create_emot_dict():
+    for emot in EMOTICONS_EMO:
+        repl = " " + "_".join(EMOTICONS_EMO[emot].replace(",",
+                                                          "").split()) + " "
+        emot_words[emot] = repl
 
 def main():
-    with open('data/example2.json') as json_file:
+    create_emot_dict()
+    with open('data/mentalhealth.json') as json_file:
         data = json.load(json_file)
         remove_usernames_and_emojis(data)
         remove_links(data)
         correct_spelling(data)
         remove_hashtags(data)
-        with open('data/clean_example2.json', 'a') as f:
+        replace_emoticons(data)
+        with open('data/clean_mentalhealth.json', 'a') as f:
             json.dump(data, f)
 
 

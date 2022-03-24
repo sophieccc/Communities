@@ -1,12 +1,14 @@
 import json
 import string
 from collections import Counter
+
 import stanza
 import textstat
 from nltk import tokenize
 from nltk.corpus import stopwords
-from nltk.parse import CoreNLPDependencyParser, CoreNLPParser
+from nltk.parse.corenlp import CoreNLPDependencyParser, CoreNLPParser
 from nltk.tree import Tree
+from nltk.tokenize import sent_tokenize
 
 
 def combine_text(data):
@@ -14,7 +16,7 @@ def combine_text(data):
     for item in data:
         text += item["text"]
         text += " "
-    with open("data/all_text.json", "w") as file:
+    with open("data/combined_techsupport.json", "w") as file:
         all_text = {"text": text}
         file.write(json.dumps(all_text))
 
@@ -49,7 +51,6 @@ def get_lexicon_stats(data):
     results["Characters per word"] = character_sum / word_sum
     results["Letters per word"] = letter_count / num_posts
     results["Polysyllabs per post"] = polysyllab_count / num_posts
-    results["Number of unique words"] = len(uniques)
     results["Overall Type-token ratio"] = len(uniques) / word_count
     return results
 
@@ -71,21 +72,21 @@ def nltk_stuff(data):
     height = 0
     for item in data:
         value = item["text"]
-
-        # Example data text is too large, small workaround:
-        value = value[0:500]
-
-        parsed = list(parser.parse(value.split()))
-        height += parsed[0].height()
-        curr_num_nodes, curr_num_s = count_nodes(parsed[0][0], 0, 0)
-        num_nodes += curr_num_nodes
-        num_s += curr_num_s
+        for sent in sent_tokenize(value):
+            small_sents = [sent[i:i+400] for i in range(0, len(sent), 400)]
+            for small_sent in small_sents:
+                parsed = list(parser.raw_parse(small_sent))
+                height += parsed[0].height()
+                curr_num_nodes, curr_num_s = count_nodes(parsed[0][0], 0, 0)
+                num_nodes += curr_num_nodes
+                num_s += curr_num_s
 
     results = {}
     results["Num clauses"] = num_s
     results["Num nodes"] = num_nodes
     results["Total height"] = height
     results["Avg nodes per post"] = num_nodes / len(data)
+    results["Avg clauses per post"] = num_s / len(data)
     results["Avg height of post"] = height / len(data)
     return results
 
@@ -105,12 +106,11 @@ def verb_stats(data):
             for word in sentence.words:
                 if word.upos.startswith("V"):
                     verb_count += 1
-    return {"verb count":verb_count}
-
+    return {"verb count": verb_count}
 
 
 def top_words():
-    with open('data/all_text.json') as file:
+    with open('data/combined_mentalhealth.json') as file:
         text = json.load(file)["text"]
         words = tokenize.word_tokenize(text)
         no_stopwords = [
@@ -125,20 +125,30 @@ def top_words():
         results = {}
         results["Frequency of all words"] = total_frequency
         results["Frequency of top 10 words"] = top_frequency
-        results["percent of text is top 10 words"] = (top_frequency / total_frequency) * 100
+        results["percent of text is top 10 words"] = (top_frequency /
+                                                      total_frequency) * 100
         return results
 
 
 def main():
-    with open('data/example2.json') as json_file:
+    with open('data/clean_mentalhealth.json') as json_file:
         data = json.load(json_file)
         results = {}
-        combine_text(data)
+        # combine_text(data)
+
+        print("Creating lexicon stats...\n")
         results["lexicon stats"] = get_lexicon_stats(data)
+
+        print("Creating verb stats...\n")
         results["verb stats"] = verb_stats(data)
-        results["ntlk stats"] = nltk_stuff(data)
+
+        print("Creating top word stats...\n")
         results["top words"] = top_words()
-        with open("analysisResult/analyze_data.json", "w") as file:
+
+        print("Creating nltk stats...\n")
+        results["ntlk stats"] = nltk_stuff(data)
+
+        with open("analysisResult/analyze_data_mentalhealth.json", "w") as file:
             file.write(json.dumps(results))
 
 

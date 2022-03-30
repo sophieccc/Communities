@@ -8,32 +8,31 @@ pd.set_option('display.max_rows',None)
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 def readData(inputFile):
-    data = open(inputFile, 'r').read()
-    dataList = json.loads(data)
-    df = pd.json_normalize(dataList)
-    return df
+    with open(inputFile) as json_file:
+        data = json.load(json_file)
+        df = pd.json_normalize(data)
+        return df
 
 def sentimentAnalysis(input,output):
-    with open(output, 'a') as f:
-        result_list = []
-        for text in input['text']:
-            print(text)
-            result = {'text':text}
-            analyzer = SentimentIntensityAnalyzer()
-            vs = analyzer.polarity_scores(text)
-            result.update(vs)
-            result_list.append(result)
+    result_list = []
+    analyzer = SentimentIntensityAnalyzer()
+    for text in input['text']:
+        result = {}
+        vs = analyzer.polarity_scores(text)
+        result.update(vs)
+        result_list.append(result)
+    with open(output, 'w') as f:
         json.dump(result_list, f)
 
 def sentimentAnalysisWithTime(input,output):
-    with open(output, 'a') as f:
-        result_list = []
-        for index,row in input.iterrows():
-            result = {'time':str(row['date'])+' '+str(row['time'])+':00','text':row['text']}
-            analyzer = SentimentIntensityAnalyzer()
-            vs = analyzer.polarity_scores(row['text'])
-            result.update(vs)
-            result_list.append(result)
+    analyzer = SentimentIntensityAnalyzer()
+    result_list = []
+    for index,row in input.iterrows():
+        result = {'time':str(row['date'])+' '+str(row['time'])+':00'}
+        vs = analyzer.polarity_scores(row['text'])
+        result.update(vs)
+        result_list.append(result)
+    with open(output, 'w') as f:
         json.dump(result_list, f)
 
 def merge(df):
@@ -50,15 +49,14 @@ def groupByHour(df):
 
 
 # Overall Sentiment Analysis
-allTechSupport_df = readData(inputFile='../data/combined_techsupport.json')
-allMentalHealth_df = readData(inputFile='../data/combined_mentalhealth.json')
+allTechSupport_df = readData(inputFile='../data/combined_clean_techsupport_with_emojis.json')
+allMentalHealth_df = readData(inputFile='../data/combined_clean_mentalhealth_with_emojis.json')
 sentimentAnalysis(allTechSupport_df,'../analysisResult/combined_tectsupport_sentiment.json')
 sentimentAnalysis(allMentalHealth_df,'../analysisResult/combined_mentalhealth_sentiment.json')
 
+# Individual Emotional Analysis
 techSupport_df = readData(inputFile='../data/clean_techsupport_with_emojis.json')
 mentalHealth_df = readData(inputFile='../data/clean_mentalhealth_with_emojis.json')
-
-# Individual Emotional Analysis
 sentimentAnalysis(techSupport_df,'../analysisResult/tectsupport_sentiment.json')
 sentimentAnalysis(mentalHealth_df,'../analysisResult/mentalhealth_sentiment.json')
 
@@ -69,6 +67,7 @@ sentiment_techSupport_df['compound_group'] = pd.cut(sentiment_techSupport_df['co
 sentiment_techSupport_df.groupby('compound_group').compound.count().plot(kind='bar',rot=20)
 plt.title('Tech Support')
 plt.show()
+
 sentiment_mentalHealth_df = readData(inputFile='../analysisResult/mentalhealth_sentiment.json')
 print(sentiment_mentalHealth_df)
 sentiment_mentalHealth_df['compound_group'] = pd.cut(sentiment_mentalHealth_df['compound'],bins=[-1,-0.8,-0.6,-0.4,-0.2,-0.05,0.05,0.2,0.4,0.6,0.8,1],labels=['[-1,-0.8]','[-0.8,-0.6]','[-0.6,-0.4]','[-0.4,-0.2]','[-0.2,-0.05]','[-0.05,0.05]','[0.05,0.2]','[0.2,0.4]','[0.4,0.6]','[0.6,0.8]','[0.8,1]'])
@@ -91,11 +90,13 @@ print(time_sentiment_techSupport_df)
 time_sentiment_techSupport_df.plot(x='time', y=['neg', 'neu', 'pos', 'compound'],rot=10)
 plt.title('Tech Support')
 plt.show()
+
 time_sentiment_mentalHealth_df = readData(inputFile='../analysisResult/time_mentalhealth_sentiment.json')
 print(time_sentiment_mentalHealth_df)
 time_sentiment_mentalHealth_df.plot(x='time', y=['neg', 'neu', 'pos', 'compound'],rot=10)
 plt.title('Mental Health')
 plt.show()
+
 
 
 

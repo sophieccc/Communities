@@ -55,8 +55,8 @@ allMentalHealth_df = readData(inputFile='../data/combined_mentalhealth.json')
 sentimentAnalysis(allTechSupport_df,'../analysisResult/combined_tectsupport_sentiment.json')
 sentimentAnalysis(allMentalHealth_df,'../analysisResult/combined_mentalhealth_sentiment.json')
 
-techSupport_df = readData(inputFile='../data/techsupport.json')
-mentalHealth_df = readData(inputFile='../data/mentalhealth.json')
+techSupport_df = readData(inputFile='../data/clean_techsupport_with_emojis.json')
+mentalHealth_df = readData(inputFile='../data/clean_mentalhealth_with_emojis.json')
 
 # Individual Emotional Analysis
 sentimentAnalysis(techSupport_df,'../analysisResult/tectsupport_sentiment.json')

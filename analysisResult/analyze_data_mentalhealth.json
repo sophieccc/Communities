@@ -29,5 +29,12 @@
         "Avg nodes per post": 473.4477777777778,
         "Avg clauses per post": 54.92888888888889,
         "Avg height of post": 146.42
+    },
+    "pronoun_and_sentiment_stats": {
+        "Average sentiment for sentences": 0.5716207731635125, 
+        "I (etc.) pronouns": 20107, 
+        "We (etc.) pronouns": 657, 
+        "They (etc.) pronouns": 1541, 
+        "Added up pronouns": 22305
     }
 }

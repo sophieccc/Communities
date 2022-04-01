@@ -77,6 +77,41 @@ def count_nodes(tree, count, num_s):
             count, num_s = count_nodes(subtree, count, num_s)
     return count, num_s
 
+def count_pronouns_and_sentiment(data):
+    indiv_pronouns = ["i", "me", "myself", "my", "mine"]
+    indiv_count = 0
+
+    in_group_count = 0
+    in_group_pronouns = ["we", "us", "ourselves", "our", "ours"]
+
+    out_group_count = 0
+    out_group_pronouns = ["they", "them", "themselves", "their", "theirs"]
+
+    total_sentiment = 0
+    sentiment_count = 0
+    nlp = stanza.Pipeline(
+        'en', processors="tokenize,mwt,pos,sentiment")
+    for item in data:
+        value = item["text"]
+        doc = nlp(value)
+        for i, sentence in enumerate(doc.sentences):
+            sentiment_count +=1
+            total_sentiment += sentence.sentiment
+            for word in sentence.words:
+                if word.upos == "PRON":
+                    if word.text.lower() in indiv_pronouns:
+                        indiv_count +=1
+                    elif word.text.lower() in in_group_pronouns:
+                        in_group_count +=1
+                    elif word.text.lower() in out_group_pronouns:
+                        out_group_count +=1
+    results = {}
+    results["Average sentiment for sentences"] = total_sentiment / sentiment_count
+    results["I (etc.) pronouns"] = indiv_count
+    results["We (etc.) pronouns"] = in_group_count
+    results["They (etc.) pronouns"] = out_group_count
+    results["Added up pronouns"] = indiv_count + in_group_count + out_group_count
+    return results                     
 
 def nltk_stuff(data):
     parser = CoreNLPParser(url='http://localhost:9001')
@@ -160,6 +195,9 @@ def main():
 
         print("Creating nltk stats...\n")
         results["ntlk stats"] = nltk_stuff(data)
+
+        print("Creating pronoun and sentiment stats...\n")
+        results["pronoun_and_sentiment_stats"] = count_pronouns_and_sentiment(data)
 
         with open("analysisResult/analyze_data_mentalhealth.json",
                   "w") as file:

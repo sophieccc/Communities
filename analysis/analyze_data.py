@@ -1,4 +1,5 @@
 import json
+import re
 import string
 from collections import Counter
 
@@ -10,6 +11,9 @@ from nltk.parse.corenlp import CoreNLPDependencyParser, CoreNLPParser
 from nltk.tree import Tree
 from nltk.tokenize import sent_tokenize
 
+# Regular expression for negation.
+NEG = r"""(?:^(?:no|not|cant|shouldnt|wont|wouldnt|dont|doesnt|isnt|arent)$)| n't"""
+NEG_RE = re.compile(NEG, re.VERBOSE)
 
 def combine_text(data):
     text = ""
@@ -20,6 +24,12 @@ def combine_text(data):
         all_text = {"text": text}
         file.write(json.dumps(all_text))
 
+def get_negative_count(text):
+    count = 0
+    for word in text.split():
+        if NEG_RE.search(word):
+            count+=1
+    return count
 
 def get_lexicon_stats(data):
     uniques = set()
@@ -27,6 +37,7 @@ def get_lexicon_stats(data):
     word_sum, sentence_sum = 0, 0
     syllable_sum, letter_count, polysyllab_count, character_sum = 0, 0, 0, 0
     num_posts = len(data)
+    neg_count = 0
     for item in data:
         value = item["text"]
         syllable_sum += textstat.textstat.syllable_count(value)
@@ -35,6 +46,7 @@ def get_lexicon_stats(data):
         character_sum += textstat.textstat.char_count(value)
         letter_count += textstat.textstat.avg_letter_per_word(value)
         polysyllab_count += textstat.textstat.polysyllabcount(value)
+        neg_count += get_negative_count(value)
         tokens = tokenize.word_tokenize(value)
         for token in tokens:
             word_count += 1
@@ -50,6 +62,7 @@ def get_lexicon_stats(data):
     results["Words per sentence"] = word_sum / sentence_sum
     results["Characters per word"] = character_sum / word_sum
     results["Letters per word"] = letter_count / num_posts
+    results["Negative count"] = neg_count
     results["Polysyllabs per post"] = polysyllab_count / num_posts
     results["Overall Type-token ratio"] = len(uniques) / word_count
     return results
@@ -73,7 +86,7 @@ def nltk_stuff(data):
     for item in data:
         value = item["text"]
         for sent in sent_tokenize(value):
-            small_sents = [sent[i:i+400] for i in range(0, len(sent), 400)]
+            small_sents = [sent[i:i + 400] for i in range(0, len(sent), 400)]
             for small_sent in small_sents:
                 parsed = list(parser.raw_parse(small_sent))
                 height += parsed[0].height()
@@ -148,7 +161,8 @@ def main():
         print("Creating nltk stats...\n")
         results["ntlk stats"] = nltk_stuff(data)
 
-        with open("analysisResult/analyze_data_mentalhealth.json", "w") as file:
+        with open("analysisResult/analyze_data_mentalhealth.json",
+                  "w") as file:
             file.write(json.dumps(results))
 
 

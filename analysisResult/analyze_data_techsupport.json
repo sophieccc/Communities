@@ -11,7 +11,8 @@
         "Characters per word": 4.377413382702988,
         "Letters per word": 4.155988888888882,
         "Polysyllabs per post": 7.571111111111111,
-        "Overall Type-token ratio": 0.07229414719698238
+        "Overall Type-token ratio": 0.07229414719698238,
+        "Negative count": 1631
     },
     "verb stats": {
         "verb count": 15228

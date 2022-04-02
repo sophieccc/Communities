@@ -12,7 +12,8 @@
         "Letters per word": 4.049433333333337,
         "Polysyllabs per post": 14.174444444444445,
         "Overall Type-token ratio": 0.04514492787593818,
-        "Negative count": 3949
+        "Negative percent of all words": 0.020698149798207454, 
+        "Advice percent of all words": 0.006038052308821217
     },
     "verb stats": {
         "verb count": 31321
@@ -36,5 +37,10 @@
         "We (etc.) pronouns": 657, 
         "They (etc.) pronouns": 1541, 
         "Added up pronouns": 22305
+    },
+    "author data": {
+        "Avg posts per author": 1.076555023923445,
+        "Avg score": 4.096666666666667, 
+        "Avg num comments": 3.2355555555555555
     }
 }

@@ -1,19 +1,22 @@
+import itertools
 import json
 import re
 import string
 from collections import Counter
+from operator import itemgetter
 
 import stanza
 import textstat
 from nltk import tokenize
 from nltk.corpus import stopwords
 from nltk.parse.corenlp import CoreNLPDependencyParser, CoreNLPParser
-from nltk.tree import Tree
 from nltk.tokenize import sent_tokenize
+from nltk.tree import Tree
 
 # Regular expression for negation.
 NEG = r"""(?:^(?:no|not|cant|shouldnt|wont|wouldnt|dont|doesnt|isnt|arent)$)| n't"""
 NEG_RE = re.compile(NEG, re.VERBOSE)
+
 
 def combine_text(data):
     text = ""
@@ -24,20 +27,35 @@ def combine_text(data):
         all_text = {"text": text}
         file.write(json.dumps(all_text))
 
+
 def get_negative_count(text):
     count = 0
-    for word in text.split():
+    for word in text:
         if NEG_RE.search(word):
-            count+=1
+            count += 1
     return count
+
+
+def get_advice_count(text):
+    count = 0
+    for word in text:
+        if word in [
+                "should", "suggest", "advise", "would", "ought", "advice",
+                "help", "question", "answer", "opinion", "recommend"
+        ]:
+            count += 1
+    return count
+
 
 def get_lexicon_stats(data):
     uniques = set()
-    word_count = 0
+    token_count = 0
     word_sum, sentence_sum = 0, 0
     syllable_sum, letter_count, polysyllab_count, character_sum = 0, 0, 0, 0
     num_posts = len(data)
     neg_count = 0
+    advice_count = 0
+    word_count = 0
     for item in data:
         value = item["text"]
         syllable_sum += textstat.textstat.syllable_count(value)
@@ -46,11 +64,16 @@ def get_lexicon_stats(data):
         character_sum += textstat.textstat.char_count(value)
         letter_count += textstat.textstat.avg_letter_per_word(value)
         polysyllab_count += textstat.textstat.polysyllabcount(value)
-        neg_count += get_negative_count(value)
+
+        words = value.split()
+        word_count += len(words)
+        neg_count += get_negative_count(words)
+        advice_count += get_advice_count(words)
         tokens = tokenize.word_tokenize(value)
         for token in tokens:
-            word_count += 1
+            token_count += 1
             uniques.add(token)
+
     results = {}
     results["Number of token"] = len(uniques)
     results["Number of posts"] = num_posts
@@ -62,9 +85,10 @@ def get_lexicon_stats(data):
     results["Words per sentence"] = word_sum / sentence_sum
     results["Characters per word"] = character_sum / word_sum
     results["Letters per word"] = letter_count / num_posts
-    results["Negative count"] = neg_count
+    results["Negative percent of all words"] = neg_count / word_count
+    results["Advice percent of all words"] = advice_count / word_count
     results["Polysyllabs per post"] = polysyllab_count / num_posts
-    results["Overall Type-token ratio"] = len(uniques) / word_count
+    results["Overall Type-token ratio"] = len(uniques) / token_count
     return results
 
 
@@ -76,6 +100,7 @@ def count_nodes(tree, count, num_s):
         if type(subtree) == Tree:
             count, num_s = count_nodes(subtree, count, num_s)
     return count, num_s
+
 
 def count_pronouns_and_sentiment(data):
     indiv_pronouns = ["i", "me", "myself", "my", "mine"]
@@ -89,29 +114,31 @@ def count_pronouns_and_sentiment(data):
 
     total_sentiment = 0
     sentiment_count = 0
-    nlp = stanza.Pipeline(
-        'en', processors="tokenize,mwt,pos,sentiment")
+    nlp = stanza.Pipeline('en', processors="tokenize,mwt,pos,sentiment")
     for item in data:
         value = item["text"]
         doc = nlp(value)
         for i, sentence in enumerate(doc.sentences):
-            sentiment_count +=1
+            sentiment_count += 1
             total_sentiment += sentence.sentiment
             for word in sentence.words:
                 if word.upos == "PRON":
                     if word.text.lower() in indiv_pronouns:
-                        indiv_count +=1
+                        indiv_count += 1
                     elif word.text.lower() in in_group_pronouns:
-                        in_group_count +=1
+                        in_group_count += 1
                     elif word.text.lower() in out_group_pronouns:
-                        out_group_count +=1
+                        out_group_count += 1
     results = {}
-    results["Average sentiment for sentences"] = total_sentiment / sentiment_count
+    results[
+        "Average sentiment for sentences"] = total_sentiment / sentiment_count
     results["I (etc.) pronouns"] = indiv_count
     results["We (etc.) pronouns"] = in_group_count
     results["They (etc.) pronouns"] = out_group_count
-    results["Added up pronouns"] = indiv_count + in_group_count + out_group_count
-    return results                     
+    results[
+        "Added up pronouns"] = indiv_count + in_group_count + out_group_count
+    return results
+
 
 def nltk_stuff(data):
     parser = CoreNLPParser(url='http://localhost:9001')
@@ -178,6 +205,26 @@ def top_words():
         return results
 
 
+def average_user_posts(data):
+    num_authors = 0
+    total_scores = 0
+    total_comments = 0
+    # Sort post data by `author` key.
+    sorted_data = sorted(data, key=itemgetter('author'))
+
+    # Display data grouped by `author`
+    for key, value in itertools.groupby(sorted_data, key=itemgetter('author')):
+        num_authors += 1
+        for item in value:
+            total_scores += item.get("score")
+            total_comments += item.get("num_comments")
+
+    results = {"Avg posts per author": len(data) / num_authors}
+    results["Avg score"] = total_scores / len(data)
+    results["Avg num comments"] = total_comments / len(data)
+    return results
+
+
 def main():
     with open('data/clean_mentalhealth.json') as json_file:
         data = json.load(json_file)
@@ -197,7 +244,11 @@ def main():
         results["ntlk stats"] = nltk_stuff(data)
 
         print("Creating pronoun and sentiment stats...\n")
-        results["pronoun_and_sentiment_stats"] = count_pronouns_and_sentiment(data)
+        results["pronoun_and_sentiment_stats"] = count_pronouns_and_sentiment(
+            data)
+
+        print("Creating author stats...\n")
+        results["author data"] = average_user_posts(data)
 
         with open("analysisResult/analyze_data_mentalhealth.json",
                   "w") as file:

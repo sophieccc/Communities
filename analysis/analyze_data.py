@@ -47,6 +47,73 @@ def get_advice_count(text):
     return count
 
 
+def get_avg_deviation(data):
+    uniques = set()
+    token_count = 0
+    word_sum, sentence_sum, character_sum = 0, 0, 0
+    num_posts = len(data)
+    sent_per_post, word_per_sent, word_per_post, char_per_word = [], [], [], []
+    type_token_ratio = []
+    for item in data:
+        value = item["text"]
+        num_sent = textstat.textstat.sentence_count(value)
+        sentence_sum += num_sent
+        sent_per_post.append(num_sent)
+
+        num_words = textstat.textstat.lexicon_count(value)
+        word_sum += num_words
+        word_per_post.append(num_words)
+        word_per_sent.append(word_sum / sentence_sum)
+
+        num_chars = textstat.textstat.char_count(value)
+        character_sum += num_chars
+        char_per_word.append(character_sum / word_sum)
+
+        tokens = tokenize.word_tokenize(value)
+        post_uniques = set()
+        post_token_count = 0
+        for token in tokens:
+            post_token_count += 1
+            uniques.add(token)
+            post_uniques.add(token)
+        token_count += post_token_count
+        type_token_ratio.append(len(post_uniques) / post_token_count)
+
+    mean_sent_per_post = sentence_sum / num_posts
+    mean_word_per_sent = word_sum / sentence_sum
+    mean_word_per_post = word_sum / num_posts
+    mean_char_per_word = character_sum / word_sum
+    mean_type_token_ratio = len(uniques) / token_count
+
+    std_dev_s_per_p = 0
+    std_dev_w_per_s = 0
+    std_dev_w_per_p = 0
+    std_dev_c_per_w = 0
+    std_dev_ttr = 0
+    for sent, wordsent, wordpost, char, ttr in zip(sent_per_post,
+                                                   word_per_sent,
+                                                   word_per_post,
+                                                   char_per_word,
+                                                   type_token_ratio):
+        std_dev_s_per_p += abs(sent - mean_sent_per_post)
+        std_dev_w_per_s += abs(wordsent - mean_word_per_sent)
+        std_dev_w_per_p += abs(wordpost - mean_word_per_post)
+        std_dev_c_per_w += abs(char - mean_char_per_word)
+        std_dev_ttr += abs(ttr - mean_type_token_ratio)
+
+    results = {}
+    results["std dev sentences per post"] = std_dev_s_per_p / num_posts
+    results["std dev words per sentence"] = std_dev_w_per_s / num_posts
+    results["std dev words per post"] = std_dev_w_per_p / num_posts
+    results["std dev characters per word"] = std_dev_c_per_w / num_posts
+    results["std dev type token ratio"] = std_dev_ttr / num_posts
+
+    total_deviation = std_dev_s_per_p + std_dev_w_per_s + std_dev_w_per_p + std_dev_c_per_w + std_dev_ttr
+    avg_standard_deviation = total_deviation / (num_posts * 5)
+    results["average user style std dev"] = avg_standard_deviation
+    return results
+
+
 def get_lexicon_stats(data):
     uniques = set()
     token_count = 0
@@ -100,6 +167,46 @@ def count_nodes(tree, count, num_s):
         if type(subtree) == Tree:
             count, num_s = count_nodes(subtree, count, num_s)
     return count, num_s
+
+
+def get_support_patterns():
+    pronouns = ["i", "we", "you"]
+    aux_words = ["can", "could", "do", "would", "will", "may"]
+    pos_verbs = ["know", "feel", "understand", "sense", "support"]
+    advice_words = ["should", "must", "need", "might"]
+    opinion_verbs = ["recommend", "advise", "suggest", "advocate", "request"]
+
+    emo_permut = list(itertools.product(pronouns[0:2], aux_words, pos_verbs))
+    emo_permut = emo_permut + list(itertools.product(pronouns[0:2], pos_verbs))
+
+    info_permut = list(
+        itertools.product([pronouns[0]], aux_words, opinion_verbs))
+    info_permut = info_permut + list(
+        itertools.product([pronouns[0]], opinion_verbs))
+    info_permut = info_permut + list(
+        itertools.product([pronouns[2]], advice_words))
+
+    for idx, emo in enumerate(emo_permut):
+        emo_permut[idx] = ' '.join(word for word in emo)
+    for idx, info in enumerate(info_permut):
+        info_permut[idx] = ' '.join(word for word in info)
+    return emo_permut, info_permut
+
+
+def calculate_support_types(data):
+    emo_patterns, info_patterns = get_support_patterns()
+    emo_index = 0
+    info_index = 0
+    for item in data:
+        value = item["text"]
+        for patt in emo_patterns:
+            emo_index += value.count(patt)
+        for patt in info_patterns:
+            info_index += value.count(patt)
+    results = {}
+    results["Emotional support index"] = emo_index / len(data)
+    results["Informational support index"] = info_index / len(data)
+    return results
 
 
 def count_pronouns_and_sentiment(data):
@@ -226,7 +333,7 @@ def average_user_posts(data):
 
 
 def main():
-    with open('data/clean_mentalhealth.json') as json_file:
+    with open('data/clean_techsupport.json') as json_file:
         data = json.load(json_file)
         results = {}
         # combine_text(data)
@@ -249,6 +356,12 @@ def main():
 
         print("Creating author stats...\n")
         results["author data"] = average_user_posts(data)
+
+        print("Getting post style deviation...\n")
+        results["avg deviation data"] = get_avg_deviation(data)
+
+        print("Getting support type index stats...\n")
+        results["Support index data"] = calculate_support_types(data)
 
         with open("analysisResult/analyze_data_mentalhealth.json",
                   "w") as file:

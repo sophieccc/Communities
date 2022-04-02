@@ -12,7 +12,7 @@
         "Letters per word": 4.049433333333337,
         "Polysyllabs per post": 14.174444444444445,
         "Overall Type-token ratio": 0.04514492787593818,
-        "Negative percent of all words": 0.020698149798207454, 
+        "Negative percent of all words": 0.020698149798207454,
         "Advice percent of all words": 0.006038052308821217
     },
     "verb stats": {
@@ -32,15 +32,27 @@
         "Avg height of post": 146.42
     },
     "pronoun_and_sentiment_stats": {
-        "Average sentiment for sentences": 0.5716207731635125, 
-        "I (etc.) pronouns": 20107, 
-        "We (etc.) pronouns": 657, 
-        "They (etc.) pronouns": 1541, 
+        "Average sentiment for sentences": 0.5716207731635125,
+        "I (etc.) pronouns": 20107,
+        "We (etc.) pronouns": 657,
+        "They (etc.) pronouns": 1541,
         "Added up pronouns": 22305
     },
     "author data": {
         "Avg posts per author": 1.076555023923445,
-        "Avg score": 4.096666666666667, 
+        "Avg score": 4.096666666666667,
         "Avg num comments": 3.2355555555555555
+    },
+    "avg deviation data": {
+        "std dev sentences per post": 8.313864197530888,
+        "std dev words per sentence": 0.46764896622283725,
+        "std dev words per post": 156.0981777777774,
+        "std dev characters per word": 0.014495351984418403,
+        "std dev type token ratio": 0.5816070341926606,
+        "average user style std dev": 33.09515866554164
+    },
+    "Support index data": {
+        "Emotional support index": 0.12333333333333334,
+        "Informational support index": 0.017777777777777778
     }
 }

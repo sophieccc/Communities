@@ -6,9 +6,11 @@
 import json
 import nltk
 from collections import Counter
+from stylecloud import gen_stylecloud
 
 
-data_file = '../data/mentalhealth.json'
+data_file = '../data/clean_mentalhealth.json'
+data_file_t = '../data/clean_techsupport.json'
 
 
 def getText(text):
@@ -75,9 +77,23 @@ def verb_tense():
             print("Gerund or present participle: " + str(counts['VBG']))
             print("Past participle: " + str(counts['VBN']))
 
+def user_similarity():
+    return
+
+def generate_word_cloud():
+    with open(data_file_t) as f:
+        result = json.load(f)
+        text = ""
+        for post in result:
+            text +=  getText(post["text"])
+        gen_stylecloud(text,
+                       icon_name='fas fa-circle'
+                       )
+
 
 if __name__ == "__main__":
-    count_i_we_them()
-    length_posts()
-    adjective_verb()
-    verb_tense()
+    # count_i_we_them()
+    # length_posts()
+    # adjective_verb()
+    # verb_tense()
+    generate_word_cloud()

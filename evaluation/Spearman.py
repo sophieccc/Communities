@@ -1,6 +1,11 @@
 import scipy.stats as stats
 import csv
 
+# Spearman's correlation
+def spearman(sample1,sample2):
+    spearman = stats.spearmanr(sample1, sample2)
+    return spearman
+
 with open('analysisResult/result1.csv') as f:
     csvFile = csv.reader(f)
     headers = next(csvFile)
@@ -11,6 +16,5 @@ with open('analysisResult/result1.csv') as f:
         sample.append(row)
 print(sample)
 
-# Spearman's correlation
-spearman = stats.spearmanr(sample[0], sample[1])
+spearman = spearman(sample[0], sample[1])
 print(spearman)

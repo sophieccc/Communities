@@ -1,6 +1,11 @@
 import scipy.stats as stats
 import csv
 
+# Mann Whitney U Test
+def mannWhitney(sample1,sample2):
+    Utest = stats.mannwhitneyu(sample1, sample2, use_continuity=True, alternative='two-sided')
+    return Utest
+
 with open('analysisResult/result1.csv') as f:
     csvFile = csv.reader(f)
     headers = next(csvFile)
@@ -11,7 +16,5 @@ with open('analysisResult/result1.csv') as f:
         sample.append(row)
 print(sample)
 
-# Mann Whitney U Test
-Utest = stats.mannwhitneyu(sample[0],sample[1], use_continuity=True, alternative='two-sided')
-
+Utest = mannWhitney(sample[0],sample[1])
 print(Utest)

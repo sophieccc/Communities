@@ -22,6 +22,7 @@
   - pip3 install textstat
   - pip3 install vaderSentiment
   - pip3 install empath
+  - pip3 install redditcleaner
 - create separate terminal and run CoreNLP server
   - cd corenlp
   - java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9001 -timeout 15000

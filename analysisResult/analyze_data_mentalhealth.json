@@ -1,0 +1,58 @@
+{
+    "lexicon stats": {
+        "Number of token": 9630,
+        "Number of posts": 900,
+        "Syllables per post": 278.5,
+        "Words per post": 211.19222222222223,
+        "Total sentences": 9737,
+        "Sentences per post": 10.818888888888889,
+        "Syllables per word": 1.3187038664092217,
+        "Words per sentence": 19.520694259012014,
+        "Characters per word": 4.183345346261699,
+        "Letters per word": 4.049433333333337,
+        "Polysyllabs per post": 14.174444444444445,
+        "Overall Type-token ratio": 0.04514492787593818,
+        "Negative percent of all words": 0.020698149798207454,
+        "Advice percent of all words": 0.006038052308821217
+    },
+    "verb stats": {
+        "verb count": 31321
+    },
+    "top words": {
+        "Frequency of all words": 104839,
+        "Frequency of top 10 words": 20190,
+        "percent of text is top 10 words": 19.258100516029337
+    },
+    "ntlk stats": {
+        "Num clauses": 49436,
+        "Num nodes": 426103,
+        "Total height": 131778,
+        "Avg nodes per post": 473.4477777777778,
+        "Avg clauses per post": 54.92888888888889,
+        "Avg height of post": 146.42
+    },
+    "pronoun_and_sentiment_stats": {
+        "Average sentiment for sentences": 0.5716207731635125,
+        "I (etc.) pronouns": 20107,
+        "We (etc.) pronouns": 657,
+        "They (etc.) pronouns": 1541,
+        "Added up pronouns": 22305
+    },
+    "author data": {
+        "Avg posts per author": 1.076555023923445,
+        "Avg score": 4.096666666666667,
+        "Avg num comments": 3.2355555555555555
+    },
+    "avg deviation data": {
+        "std dev sentences per post": 8.313864197530888,
+        "std dev words per sentence": 0.46764896622283725,
+        "std dev words per post": 156.0981777777774,
+        "std dev characters per word": 0.014495351984418403,
+        "std dev type token ratio": 0.5816070341926606,
+        "average user style std dev": 33.09515866554164
+    },
+    "Support index data": {
+        "Emotional support index": 0.12333333333333334,
+        "Informational support index": 0.017777777777777778
+    }
+}

@@ -87,13 +87,27 @@ def user_metioned_personal_information():
     scrubber.add_detector(scrubadub_stanford.detectors.StanfordEntityDetector(
         enable_person=True, enable_organization=True, enable_location=True
     ))
-    with open(data_file) as f:
-        result = json.load(f)
-        for post in result:
-            text = getText(post["text"])
+    with open('../analysisResult/personal_information.txt', 'w') as fil:
+        with open(data_file) as f:
+            result = json.load(f)
+            text = ""
+            for post in result:
+                text += getText(post["text"])
             print(text)
-            print(scrubber.clean(text))
-            break
+            txt = scrubber.clean(text)
+            print(txt)
+            fil.write("Metal health:")
+            fil.write(str(txt.count("{{")))
+        with open(data_file_t) as f:
+            result = json.load(f)
+            text = ""
+            for post in result:
+                text += getText(post["text"])
+            print(text)
+            txt = scrubber.clean(text)
+            print(txt)
+            fil.write("Tech support:")
+            fil.write(str(txt.count("{{")))
 
 def generate_word_cloud():
     with open(data_file_t) as f:

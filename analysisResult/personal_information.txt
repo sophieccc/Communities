@@ -1,0 +1,2 @@
+Metal health:20
+Tech support:10

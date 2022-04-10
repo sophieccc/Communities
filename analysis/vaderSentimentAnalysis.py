@@ -66,6 +66,7 @@ print(sentiment_techSupport_df)
 sentiment_techSupport_df['compound_group'] = pd.cut(sentiment_techSupport_df['compound'],bins=[-1,-0.8,-0.6,-0.4,-0.2,-0.05,0.05,0.2,0.4,0.6,0.8,1],labels=['[-1,-0.8]','[-0.8,-0.6]','[-0.6,-0.4]','[-0.4,-0.2]','[-0.2,-0.05]','[-0.05,0.05]','[0.05,0.2]','[0.2,0.4]','[0.4,0.6]','[0.6,0.8]','[0.8,1]'])
 sentiment_techSupport_df.groupby('compound_group').compound.count().plot(kind='bar',rot=20)
 plt.title('Tech Support')
+plt.savefig('../analysisResult/techsupport_vader_individual.png')
 plt.show()
 
 sentiment_mentalHealth_df = readData(inputFile='../analysisResult/mentalhealth_sentiment.json')
@@ -73,6 +74,7 @@ print(sentiment_mentalHealth_df)
 sentiment_mentalHealth_df['compound_group'] = pd.cut(sentiment_mentalHealth_df['compound'],bins=[-1,-0.8,-0.6,-0.4,-0.2,-0.05,0.05,0.2,0.4,0.6,0.8,1],labels=['[-1,-0.8]','[-0.8,-0.6]','[-0.6,-0.4]','[-0.4,-0.2]','[-0.2,-0.05]','[-0.05,0.05]','[0.05,0.2]','[0.2,0.4]','[0.4,0.6]','[0.6,0.8]','[0.8,1]'])
 sentiment_mentalHealth_df.groupby('compound_group').compound.count().plot(kind='bar',rot=20)
 plt.title('Mental Health')
+plt.savefig('../analysisResult/mentalhealth_vader_individual.png')
 plt.show()
 
 # Group by time
@@ -89,12 +91,14 @@ time_sentiment_techSupport_df = readData(inputFile='../analysisResult/time_tects
 print(time_sentiment_techSupport_df)
 time_sentiment_techSupport_df.plot(x='time', y=['neg', 'neu', 'pos', 'compound'],rot=10)
 plt.title('Tech Support')
+plt.savefig('../analysisResult/techsupport_vader_time.png')
 plt.show()
 
 time_sentiment_mentalHealth_df = readData(inputFile='../analysisResult/time_mentalhealth_sentiment.json')
 print(time_sentiment_mentalHealth_df)
 time_sentiment_mentalHealth_df.plot(x='time', y=['neg', 'neu', 'pos', 'compound'],rot=10)
 plt.title('Mental Health')
+plt.savefig('../analysisResult/mentalhealth_vader_time.png')
 plt.show()
 
 

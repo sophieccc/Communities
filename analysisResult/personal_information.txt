@@ -1,2 +1,2 @@
-Metal health:20
+Mental health:20
 Tech support:10
